@@ -28,7 +28,7 @@ if (array_key_exists('action', $_REQUEST) && array_key_exists('prodid', $_REQUES
 		/*$res = pg_query("select productid,productname,productdescr,msrp,imageurl from products where productid='".
 			$_REQUEST['prodid']."'");*/
 			$res = pg_query("select productid,productname,productdescr,msrp,imageurl from products where productid=$1 ", array($_REQUEST['prodid'])/*'".
-			$_REQUEST['prodid']."'"*/);
+			$_REQUEST['prodid']."'");
 		$cache = pg_fetch_assoc($res);
 		pg_free_result($res);
 		pg_close($conn);
