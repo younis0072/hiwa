@@ -5,8 +5,9 @@ if (array_key_exists('login', $_REQUEST) &&
 	$conn = pg_connect("user=".$CONFIG['username'].
 	    " dbname=".$CONFIG['database']);
 	$result = pg_query("SELECT * from users
-	    WHERE login='".$_REQUEST['login']."'
-	    AND password='".$_REQUEST['password']."'");
+	    /*WHERE login='".$_REQUEST['login']."'
+	    AND password='".$_REQUEST['password']."'");*/
+        WHERE login=$1 AND password=$2 ", array($_REQUEST['login'], $_REQUEST['password']));
 	$row = pg_fetch_assoc($result);
 	if ($row === False) {
 		require 'header.php';
